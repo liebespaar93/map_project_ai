@@ -1,0 +1,100 @@
+.width_640px {
+    width: 640px;
+    background-color: white;
+}
+
+.main_ctn {
+    width: auto;
+    max-width: var(--global-width);
+    position: relative;
+    color: black;
+    margin: auto;
+}
+
+.title_box {
+    height: 200px;
+    margin-top: 16px;
+}
+
+.title_text {
+    color: black;
+    background-color: yellowgreen;
+    padding: 8px;
+    font-size: 32px;
+
+}
+
+
+.search_box {
+    width: 100%;
+    height: 56px;
+    padding: 8px;
+    border-radius: 30px 0px 0px 30px;
+    background-color: blanchedalmond;
+    color: black;
+    animation-name: "search_ani";
+    animation-duration: 3s;
+    margin-top: 16px;
+}
+
+.search_inp {
+    width: 80%;
+    height: 40px;
+    padding: 8px;
+    border-radius: 30px 0px 0px 30px;
+    border-left: solid 2px rgb(255, 255, 255);
+    font-size: 16px;
+}
+
+.search_btn {
+    width: 20%;
+    height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: rgb(60, 0, 255);
+    border-radius: 0px 30px 30px 0px;
+    border-left: solid 4px rgb(0, 255, 47);
+}
+
+
+
+.keyword_box {
+    width: 100%;
+    height: 80px;
+    padding: 8px;
+}
+
+.keyword_title {
+    font-size: 20px;
+    background-color: violet;
+}
+
+.keyword_list {
+    color: gray;
+}
+
+
+@keyframes search_ani {
+    from {
+        margin-left: 100%;
+        width: 300%;
+
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+.map_box {
+    background-color: aliceblue;
+    margin-top: 16px;
+}
+
+.map_title {
+    font-size: 24px;
+    background-color: tomato;
+    padding: 8px
+    
+}
