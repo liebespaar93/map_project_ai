@@ -10,9 +10,10 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  /*
   openGraph: {
-    title: 'Next.js',
-    description: 'The React Framework for the Web',
+    title: 'map project ai',
+    description: 'ai와 함께 찾는 장소 맵',
     url: 'map-project-ai.vercel.app',
     siteName: 'map project ai',
     images: [
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     type: 'website',
   }
+  */
 };
 
 export default function RootLayout({
