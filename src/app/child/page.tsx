@@ -1,4 +1,5 @@
 import { TranslateInput } from "@/components/TranslateInput";
+import ModelChat from "@/components/model_chat";
 import { exec, fork, spawn } from "child_process";
 import Link from "next/link";
 
@@ -46,7 +47,8 @@ export default function Child() {
           <p> url :</p>
         </div>
       </Link>
-      <TranslateInput />
+      {/* <TranslateInput /> */}
+      <ModelChat />
       Child process 테스트를 위한 곳입니다
     </main>
   );
