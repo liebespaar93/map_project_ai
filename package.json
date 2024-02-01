@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "gpt4all": "^3.1.0",
     "kakao.maps.d.ts": "^0.1.39",
     "next": "14.1.0",
     "react": "^18",

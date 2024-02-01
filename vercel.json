@@ -2,7 +2,7 @@
     "redirects": [
         {
             "source": "/api",
-            "destination": "/api"
+            "destination": "/api/python"
         }
     ]
 }
