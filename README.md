@@ -134,3 +134,70 @@ class handler(BaseHTTPRequestHandler):
 
 ## node 메모리 한계치 조정
 export NODE_OPTIONS=--max_old_space_size=6192
+
+
+## google icon 사용
+
+🔗 링크 : [![image](https://www.gstatic.com/images/icons/material/apps/fonts/1x/material-symbols/material_symbols.jpg)](https://fonts.google.com/icons)
+
+
+### 사용법 
+
+- ```src/app/globalicons.css```에 원하는 아이콘 불러오기
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+```
+
+- 원하는 위치에 사용 
+
+```html
+<span className="material-symbols-outlined">아이콘 명칭</span>
+<span className="material-symbols-outlined">arrow_back_ios</span>
+```
+
+## twintail 사용 css
+
+🔗 링크 : https://tailwindcss.com/docs/
+
+
+```tailwind.config.ts```에 커스텀 사용
+원하는 색상 추가
+```ts
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+    },
+    colors: {
+      "kakao-main-blue-color": '#9BBBD4',
+      "kakao-main-white-color": '#FFFFFF',
+      "kakao-main-brown-color": '#371D1E',
+      "kakao-main-yellow-color": '#F9E000',
+      "kakao-text-color": '#000000',
+      "kakao-text-time-color": '#556677',
+      "kakao-req-msg-box-color": '#000000',
+      "kakao-res-msg-box-color": '#F9E000',
+      "kakao-input-box-color": '#B7B7B7',
+      "kakao-button-color": '#1597F5',
+    }
+  },
+  plugins: [],
+};
+export default config;
+```
