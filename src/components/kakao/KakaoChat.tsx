@@ -18,15 +18,13 @@ function KakaoChat(props: KakaoChatProps) {
     const [keybinding, set_key_binding] = useState<boolean>(true);
     const empty_content_model: InputContent = { parts: [{ text: "" }], role: "model" }
     const empty_content_user: InputContent = { parts: [{ text: chat_input }], role: "user" }
-    const a: Part = { text: "S" };
-    a.text
 
     async function handleSubmitChatKeydown(e: React.KeyboardEvent) {
         if (e.key == 'Enter' && keybinding && chat_input.trim()) {
             set_key_binding(false)
             set_chat_input("");
             const check_json = JSON.stringify({ chat_history, chat_input })
-            await set_chat_history([...chat_history, empty_content_user, empty_content_model])
+            set_chat_history([...chat_history, empty_content_user, empty_content_model])
 
             const res = await fetch("api_next/model", {
                 method: "POST",
@@ -38,7 +36,6 @@ function KakaoChat(props: KakaoChatProps) {
             const param = await res.json().then((value: geminiPostResType) => {
                 set_chat_history(value.chat_history)
                 set_chat_output(value.chat_output);
-                console.log(value.chat_history)
             });
             set_key_binding(true)
         }
