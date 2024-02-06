@@ -201,3 +201,19 @@ const config: Config = {
 };
 export default config;
 ```
+
+
+## Markdown Nextjs
+
+> [!Note]
+> remark 를 사용한다
+
+```bash
+npm install remark remark-html
+```
+```js
+
+import { remark } from 'remark';
+import html from 'remark-html';
+
+```

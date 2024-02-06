@@ -1,11 +1,9 @@
-"use client"
-
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect, useRef, useState } from 'react'
 import KakaoChatReq from './KakaoChatReq'
 import KakaoChatRes from './KakaoChatRes'
-import ModelChat from '../model_chat'
 import { InputContent, Part } from '@google/generative-ai'
+
+import ReMarkChat from '../ReMarkChat'
 
 type KakaoChatProps = {
     children?: React.ReactNode
@@ -18,8 +16,13 @@ function KakaoChat(props: KakaoChatProps) {
     const [keybinding, set_key_binding] = useState<boolean>(true);
     const empty_content_model: InputContent = { parts: [{ text: "" }], role: "model" }
     const empty_content_user: InputContent = { parts: [{ text: chat_input }], role: "user" }
+    const scroll_ctr = useRef<HTMLDivElement>(null);
+
+
 
     async function handleSubmitChatKeydown(e: React.KeyboardEvent) {
+    }
+    async function handleSubmitChatKeyup(e: React.KeyboardEvent) {
         if (e.key == 'Enter' && keybinding && chat_input.trim()) {
             set_key_binding(false)
             set_chat_input("");
@@ -35,13 +38,17 @@ function KakaoChat(props: KakaoChatProps) {
             });
             const param = await res.json().then((value: geminiPostResType) => {
                 set_chat_history(value.chat_history)
-                set_chat_output(value.chat_output);
+                set_chat_output(value.chat_output)
+                set_key_binding(true)
             });
-            set_key_binding(true)
         }
     }
-    function handleSubmitChatKeyup(e: React.KeyboardEvent) {
-    }
+    useEffect(() => {
+        setTimeout(() => {
+            if (scroll_ctr.current)
+                scroll_ctr.current.scroll({top: scroll_ctr.current.scrollHeight,behavior:"smooth"})
+        }, 100);
+    }, [chat_history, chat_output])
 
     return (
         <div className='flex flex-col-reverse h-full'>
@@ -63,18 +70,19 @@ function KakaoChat(props: KakaoChatProps) {
                     />
                 </div>
             </div>
-            <div className='flex-1 flex-col p-1 overflow-scroll'>
+            <div ref={scroll_ctr} className='flex-1 flex-col p-1 overflow-scroll'>
                 {props.children ?
                     <div className='block w-full'>
                         <div className='m-auto p-2 rounded-lg border-kakao-main-yellow-color border-2 bg-kakao-main-white-color text-kakao-text-time-color w-5/6 text-center'> {props.children} </div>
                     </div>
                     : undefined
                 }
-                {chat_history.map((value : any , index) => (
+                {chat_history.map((value: any, index) => (
                     <div key={index.toString()}>
                         {value.role == 'model' ?
-                            <KakaoChatReq>{value.parts[0] ? value.parts[0]["text"] : ""}</KakaoChatReq> :
-                            <KakaoChatRes>{value.parts[0] ? value.parts[0]["text"] : ""}</KakaoChatRes>}
+                            <KakaoChatReq text={value.parts[0] ? value.parts[0]["text"] : ""} /> :
+                            <KakaoChatRes text={value.parts[0] ? value.parts[0]["text"] : ""} />
+                        }
                     </div>
                 ))}
             </div>

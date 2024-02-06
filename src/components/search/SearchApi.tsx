@@ -17,7 +17,6 @@ export function SearchApi() {
             body: JSON.stringify({ inText })
         });
         const param = await res.json();
-        console.log(param)
         setOutText(param.outText);
         setInText("");
     }

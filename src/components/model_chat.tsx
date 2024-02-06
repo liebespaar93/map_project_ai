@@ -18,12 +18,8 @@ export default function ModelChat() {
             body: JSON.stringify({ chat_history, chat_input })
         });
         const param = await res.json().then((value: geminiPostResType) => {
-            // set_chat_history(value.chat_history);
             set_chat_history(value.chat_history)
-            console.log(value.chat_history)
-            console.log(value.chat_output)
             set_chat_output(value.chat_output);
-            // set_chat_input("");
         });
     }
     return (
